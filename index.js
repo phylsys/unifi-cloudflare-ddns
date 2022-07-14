@@ -23,10 +23,25 @@
 
         // Throws exception when query parameters aren't formatted correctly
         const url = new URL(request.url);
-        verifyParameters(url);
+        if (!url.searchParams) {
+          throw new BadRequestException("You must include proper query parameters");
+        }
 
+        // Get hostname
+        const hostname = url.searchParams.get("hostname");
+        if (!hostname) {
+          throw new BadRequestException("You must specify a hostname");
+        }
+
+        // Get the IP address. Use Cloudflare 'x-real-ip' first, otherwise query parameters.
+        // Use the "ip" query parameter if it is set, otherwise falling back to "myip".
+        const ip = request.headers.get("x-real-ip") || url.searchParams.get("ip") || url.searchParams.get("myip");
+        if (!ip) {
+          throw new BadRequestException("You must specify an ip address");
+        }
+        
         // Only returns this response when no exception is thrown.
-        const response = await informAPI(url, username, password);
+        const response = await informAPI(username, password, hostname, ip);
         return response;
       }
 
@@ -42,18 +57,13 @@
 
 /**
  * Pass the request info to the Cloudflare API Handler
- * @param {URL} url
  * @param {String} name
  * @param {String} token
+ * @param {String} hostname
+ * @param {String} ip
  * @returns {Promise<Response>}
  */
-async function informAPI(url, name, token) {
-  // Parse Url
-  const hostname = url.searchParams.get("hostname");
-  // Get the IP address. This can accept two query parameters, this will
-  // use the "ip" query parameter if it is set, otherwise falling back to "myip". 
-  const ip = url.searchParams.get("ip") || url.searchParams.get("myip");
-
+async function informAPI(name, token, hostname, ip) {
   // Initialize API Handler
   const cloudflare = new Cloudflare({
     token: token,
@@ -71,25 +81,6 @@ async function informAPI(url, name, token) {
       "Cache-Control": "no-store"
     },
   });
-}
-
-/**
- * Throws exception on verification failure.
- * @param {string} url
- * @throws {UnauthorizedException}
- */
-function verifyParameters(url) {
-  if (!url.searchParams) {
-    throw new BadRequestException("You must include proper query parameters");
-  }
-
-  if (!url.searchParams.get("hostname")) {
-    throw new BadRequestException("You must specify a hostname");
-  }
-
-  if (!(url.searchParams.get("ip") || url.searchParams.get("myip"))) {
-    throw new BadRequestException("You must specify an ip address");
-  }
 }
 
 /**
