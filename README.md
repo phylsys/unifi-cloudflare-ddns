@@ -1,9 +1,9 @@
 # 🌩️ Cloudflare DDNS for UniFi OS
 
-[![CodeQL](https://github.com/willswire/unifi-ddns/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/willswire/unifi-ddns/actions/workflows/github-code-scanning/codeql)
-[![Code Coverage](https://github.com/willswire/unifi-ddns/actions/workflows/coverage.yml/badge.svg)](https://github.com/willswire/unifi-ddns/actions/workflows/coverage.yml)
-[![Dependabot Updates](https://github.com/willswire/unifi-ddns/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/willswire/unifi-ddns/actions/workflows/dependabot/dependabot-updates)
-[![Deploy](https://github.com/willswire/unifi-ddns/actions/workflows/deploy.yml/badge.svg)](https://github.com/willswire/unifi-ddns/actions/workflows/deploy.yml)
+[![CodeQL](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/github-code-scanning/codeql)
+[![Code Coverage](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/coverage.yml/badge.svg)](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/coverage.yml)
+[![Dependabot Updates](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/dependabot/dependabot-updates)
+[![Deploy](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/deploy.yml/badge.svg)](https://github.com/phylsys/unifi-cloudflare-ddns/actions/workflows/deploy.yml)
 
 A Cloudflare Worker script that enables UniFi devices (e.g., UDM-Pro, USG) to dynamically update DNS A/AAAA records on Cloudflare.
 
@@ -16,7 +16,7 @@ UniFi devices do not natively support Cloudflare as a DDNS provider. This script
 ### 1. **Deploy the Cloudflare Worker**
 
 #### **Option 1: Click to Deploy**
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/willswire/unifi-ddns)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/phylsys/unifi-cloudflare-ddns)
 
 1. Click the button above.
 2. Complete the deployment.
@@ -55,4 +55,4 @@ UniFi devices do not natively support Cloudflare as a DDNS provider. This script
 
 ## 🛠️ **Testing & Troubleshooting**
 
-Using this script with various Ubiquiti devices and different UniFi software versions can introduce unique challenges. If you encounter issues, start by checking the FAQ in `/docs/faq.md`. If you don’t find a solution, you can ask a question on the [discussions page](https://github.com/willswire/unifi-ddns/discussions/new?category=q-a). If the problem persists, please raise an issue [here](https://github.com/willswire/unifi-ddns/issues).
+Using this script with various Ubiquiti devices and different UniFi software versions can introduce unique challenges. If you encounter issues, start by checking the FAQ in `/docs/faq.md`. If you don’t find a solution, you can ask a question on the [discussions page](https://github.com/phylsys/unifi-cloudflare-ddns/discussions/new?category=q-a). If the problem persists, please raise an issue [here](https://github.com/phylsys/unifi-cloudflare-ddns/issues).
